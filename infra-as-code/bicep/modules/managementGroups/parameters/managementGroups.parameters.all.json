@@ -3,16 +3,16 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "parTopLevelManagementGroupPrefix": {
-      "value": "IslandHealth"
+      "value": "ISLH"
     },
     "parTopLevelManagementGroupSuffix": {
       "value": ""
     },
     "parTopLevelManagementGroupDisplayName": {
-      "value": "IslandHealth"
+      "value": "ISLH"
     },
     "parTopLevelManagementGroupParentId": {
-      "value": "HealthOrganizations"
+      "value": ""
     },
     "parLandingZoneMgAlzDefaultsEnable": {
       "value": true

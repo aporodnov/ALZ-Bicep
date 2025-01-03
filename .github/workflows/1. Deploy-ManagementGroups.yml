@@ -5,7 +5,7 @@ on: [workflow_dispatch]
 env:
   # ManagementGroupPrefix: "IslandHealth"
   # TopLevelManagementGroupDisplayName: "IslandHealth"
-  Location: "canadacentral"
+  Location: canadacentral
   # LoggingSubId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
   # LoggingResourceGroupName: "alz-logging"
   # HubNetworkSubId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"

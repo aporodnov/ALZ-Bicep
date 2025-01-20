@@ -1,0 +1,42 @@
+name: 2. Deploy-CustomPolicyDefinitions
+
+on: [workflow_dispatch]
+
+env:
+  ManagementGroupPrefix: "IntermediateRoot"
+  # TopLevelManagementGroupDisplayName: "Azure Landing Zones"
+  Location: "canadacentral"
+  # LoggingSubId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  # LoggingResourceGroupName: "alz-logging"
+  # HubNetworkSubId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  # HubNetworkResourceGroupName: "Hub_Networking_POC"
+  # RoleAssignmentManagementGroupId: "alz-platform"
+  # SpokeNetworkSubId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  # SpokeNetworkResourceGroupName: "Spoke_Networking_POC"
+  runNumber: ${{ github.run_number }}
+
+jobs:
+  bicep_tenant_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+
+      - name: Deploy Custom Policy Definitions
+        id: create_policy_defs
+        uses: azure/arm-deploy@v1
+        with:
+          scope: managementgroup
+          managementGroupId: ${{ env.ManagementGroupPrefix }}
+          region: ${{ env.Location }}
+          template: infra-as-code/bicep/modules/policy/definitions/customPolicyDefinitions.bicep
+          parameters: infra-as-code/bicep/modules/policy/definitions/parameters/customPolicyDefinitions.parameters.all.json
+          deploymentName: create_policy_defs-${{ env.runNumber }}
+          failOnStdErr: false

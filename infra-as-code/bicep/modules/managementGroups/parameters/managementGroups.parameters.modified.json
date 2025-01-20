@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "parTopLevelManagementGroupPrefix": {
+      "value": "HealthOrg-IntermediateRoot"
+    },
+    "parTopLevelManagementGroupSuffix": {
+      "value": ""
+    },
+    "parTopLevelManagementGroupParentId": {
+      "value": "IntermediateRoot"
+    },
+    "parLandingZoneMgAlzDefaultsEnable": {
+      "value": true
+    },
+    "parPlatformMgAlzDefaultsEnable": {
+      "value": true
+    },
+    "parLandingZoneMgConfidentialEnable": {
+      "value": false
+    },
+    "parLandingZoneMgChildren": {
+      "value": {
+        "Hybrid": {
+          "displayName": "Hybrid"
+        },
+        "Cloud": {
+          "displayName": "Cloud"
+        }
+      }
+    },
+    "parPlatformMgChildren": {
+      "value": {
+        "Connectivity": {
+          "displayName": "Connectivity"
+        },
+        "Identity": {
+          "displayName": "Identity"
+        },
+        "Management": {
+          "displayName": "Management"
+        }
+      }
+    },
+    "parTelemetryOptOut": {
+      "value": true
+    }
+  }
+}

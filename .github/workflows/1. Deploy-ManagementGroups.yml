@@ -36,6 +36,6 @@ jobs:
             az deployment mg create \
               --management-group-id ${{ env.TopLevelManagementGroupDisplayName }} \
               --template-file infra-as-code/bicep/modules/managementGroups/managementGroupsModified.bicep \
-              --parameters @infra-as-code/bicep/modules/managementGroups/parameters/managementGroups.parameters.all.json \
+              --parameters @infra-as-code/bicep/modules/managementGroups/parameters/managementGroups.parameters.modified.json \
               --location ${{ env.Location }} \
               --name create_mgs-${{ env.runNumber }}

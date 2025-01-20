@@ -4,7 +4,7 @@ on: [workflow_dispatch]
 
 env:
   # ManagementGroupPrefix: "IslandHealth"
-  # TopLevelManagementGroupDisplayName: "IslandHealth"
+  TopLevelManagementGroupDisplayName: "IntermediateRoot"
   Location: "canadacentral"
   # LoggingSubId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
   # LoggingResourceGroupName: "alz-logging"
@@ -34,6 +34,7 @@ jobs:
         shell: bash
         run: |
             az deployment mg create \
+              --management-group-id ${{ env.TopLevelManagementGroupDisplayName }} \
               --template-file infra-as-code/bicep/modules/managementGroups/managementGroups.bicep \
               --parameters @infra-as-code/bicep/modules/managementGroups/parameters/managementGroups.parameters.all.json \
               --location ${{ env.Location }} \

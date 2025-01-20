@@ -3,13 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "parTopLevelManagementGroupPrefix": {
-      "value": "ISLH"
+      "value": "HealthOrg-IntermediateRoot"
     },
     "parTopLevelManagementGroupSuffix": {
       "value": ""
     },
     "parTopLevelManagementGroupDisplayName": {
-      "value": "ISLH"
+      "value": "IntermediateRoot"
     },
     "parTopLevelManagementGroupParentId": {
       "value": "IntermediateRoot"

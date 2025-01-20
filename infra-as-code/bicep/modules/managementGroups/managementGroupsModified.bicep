@@ -12,9 +12,9 @@ param parTopLevelManagementGroupPrefix string = 'alz'
 @maxLength(10)
 param parTopLevelManagementGroupSuffix string = ''
 
-@sys.description('Display name for top level management group. This name will be applied to the management group prefix defined in parTopLevelManagementGroupPrefix parameter.')
-@minLength(2)
-param parTopLevelManagementGroupDisplayName string = 'Azure Landing Zones'
+// @sys.description('Display name for top level management group. This name will be applied to the management group prefix defined in parTopLevelManagementGroupPrefix parameter.')
+// @minLength(2)
+// param parTopLevelManagementGroupDisplayName string = 'Azure Landing Zones'
 
 @sys.description('Optional parent for Management Group hierarchy, used as intermediate root Management Group parent, if specified. If empty, default, will deploy beneath Tenant Root Management Group.')
 param parTopLevelManagementGroupParentId string = ''
@@ -101,18 +101,24 @@ var varDecommissionedMg = {
 // Customer Usage Attribution Id
 var varCuaid = '9b7965a0-d77c-41d6-85ef-ec3dfea4845b'
 
+// Level 1 ORIGINAL
+// resource resTopLevelMg 'Microsoft.Management/managementGroups@2023-04-01' = {
+//   name: '${parTopLevelManagementGroupPrefix}${parTopLevelManagementGroupSuffix}'
+//   scope: tenant()
+//   properties: {
+//     displayName: parTopLevelManagementGroupDisplayName
+//     details: {
+//       parent: {
+//         id: empty(parTopLevelManagementGroupParentId) ? '/providers/Microsoft.Management/managementGroups/${tenant().tenantId}' : contains(toLower(parTopLevelManagementGroupParentId), toLower('/providers/Microsoft.Management/managementGroups/')) ? parTopLevelManagementGroupParentId : '/providers/Microsoft.Management/managementGroups/${parTopLevelManagementGroupParentId}'
+//       }
+//     }
+//   }
+// }
+
 // Level 1
-resource resTopLevelMg 'Microsoft.Management/managementGroups@2023-04-01' = {
-  name: '${parTopLevelManagementGroupPrefix}${parTopLevelManagementGroupSuffix}'
+resource resTopLevelMg 'Microsoft.Management/managementGroups@2023-04-01' existing =  {
+  name: parTopLevelManagementGroupParentId
   scope: tenant()
-  properties: {
-    displayName: parTopLevelManagementGroupDisplayName
-    details: {
-      parent: {
-        id: empty(parTopLevelManagementGroupParentId) ? '/providers/Microsoft.Management/managementGroups/${tenant().tenantId}' : contains(toLower(parTopLevelManagementGroupParentId), toLower('/providers/Microsoft.Management/managementGroups/')) ? parTopLevelManagementGroupParentId : '/providers/Microsoft.Management/managementGroups/${parTopLevelManagementGroupParentId}'
-      }
-    }
-  }
 }
 
 // Level 2

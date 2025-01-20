@@ -12,7 +12,7 @@
       "value": "ISLH"
     },
     "parTopLevelManagementGroupParentId": {
-      "value": ""
+      "value": "IntermediateRoot"
     },
     "parLandingZoneMgAlzDefaultsEnable": {
       "value": true
@@ -24,10 +24,27 @@
       "value": false
     },
     "parLandingZoneMgChildren": {
-      "value": {}
+      "value": {
+        "Hybrid": {
+          "displayName": "Hybrid"
+        },
+        "Cloud": {
+          "displayName": "Cloud"
+        }
+      }
     },
     "parPlatformMgChildren": {
-      "value": {}
+      "value": {
+        "Connectivity": {
+          "displayName": "Connectivity"
+        },
+        "Identity": {
+          "displayName": "Identity"
+        },
+        "Management": {
+          "displayName": "Management"
+        }
+      }
     },
     "parTelemetryOptOut": {
       "value": true

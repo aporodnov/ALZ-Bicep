@@ -1,4 +1,4 @@
-targetScope = 'tenant'
+targetScope = 'managementGroup'
 
 metadata name = 'ALZ Bicep - Management Groups Module'
 metadata description = 'ALZ Bicep Module to set up Management Group structure'
@@ -104,6 +104,7 @@ var varCuaid = '9b7965a0-d77c-41d6-85ef-ec3dfea4845b'
 // Level 1
 resource resTopLevelMg 'Microsoft.Management/managementGroups@2023-04-01' = {
   name: '${parTopLevelManagementGroupPrefix}${parTopLevelManagementGroupSuffix}'
+  scope: tenant()
   properties: {
     displayName: parTopLevelManagementGroupDisplayName
     details: {
@@ -117,6 +118,7 @@ resource resTopLevelMg 'Microsoft.Management/managementGroups@2023-04-01' = {
 // Level 2
 resource resPlatformMg 'Microsoft.Management/managementGroups@2023-04-01' = {
   name: varPlatformMg.name
+  scope: tenant()
   properties: {
     displayName: varPlatformMg.displayName
     details: {
@@ -129,6 +131,7 @@ resource resPlatformMg 'Microsoft.Management/managementGroups@2023-04-01' = {
 
 resource resLandingZonesMg 'Microsoft.Management/managementGroups@2023-04-01' = {
   name: varLandingZoneMg.name
+  scope: tenant()
   properties: {
     displayName: varLandingZoneMg.displayName
     details: {
@@ -141,6 +144,7 @@ resource resLandingZonesMg 'Microsoft.Management/managementGroups@2023-04-01' = 
 
 resource resSandboxMg 'Microsoft.Management/managementGroups@2023-04-01' = {
   name: varSandboxMg.name
+  scope: tenant()
   properties: {
     displayName: varSandboxMg.displayName
     details: {
@@ -153,6 +157,7 @@ resource resSandboxMg 'Microsoft.Management/managementGroups@2023-04-01' = {
 
 resource resDecommissionedMg 'Microsoft.Management/managementGroups@2023-04-01' = {
   name: varDecommissionedMg.name
+  scope: tenant()
   properties: {
     displayName: varDecommissionedMg.displayName
     details: {
@@ -166,6 +171,7 @@ resource resDecommissionedMg 'Microsoft.Management/managementGroups@2023-04-01' 
 // Level 3 - Child Management Groups under Landing Zones MG
 resource resLandingZonesChildMgs 'Microsoft.Management/managementGroups@2023-04-01' = [for mg in items(varLandingZoneMgChildrenUnioned): if (!empty(varLandingZoneMgChildrenUnioned)) {
   name: '${parTopLevelManagementGroupPrefix}-landingzones-${mg.key}${parTopLevelManagementGroupSuffix}'
+  scope: tenant()
   properties: {
     displayName: mg.value.displayName
     details: {
@@ -179,6 +185,7 @@ resource resLandingZonesChildMgs 'Microsoft.Management/managementGroups@2023-04-
 //Level 3 - Child Management Groups under Platform MG
 resource resPlatformChildMgs 'Microsoft.Management/managementGroups@2023-04-01' = [for mg in items(varPlatformMgChildrenUnioned): if (!empty(varPlatformMgChildrenUnioned)) {
   name: '${parTopLevelManagementGroupPrefix}-platform-${mg.key}${parTopLevelManagementGroupSuffix}'
+  scope: tenant()
   properties: {
     displayName: mg.value.displayName
     details: {
@@ -193,6 +200,7 @@ resource resPlatformChildMgs 'Microsoft.Management/managementGroups@2023-04-01' 
 module modCustomerUsageAttribution '../../CRML/customerUsageAttribution/cuaIdTenant.bicep' = if (!parTelemetryOptOut) {
   #disable-next-line no-loc-expr-outside-params //Only to ensure telemetry data is stored in same location as deployment. See https://github.com/Azure/ALZ-Bicep/wiki/FAQ#why-are-some-linter-rules-disabled-via-the-disable-next-line-bicep-function for more information //Only to ensure telemetry data is stored in same location as deployment. See https://github.com/Azure/ALZ-Bicep/wiki/FAQ#why-are-some-linter-rules-disabled-via-the-disable-next-line-bicep-function for more information
   name: 'pid-${varCuaid}-${uniqueString(deployment().location)}'
+  scope: tenant()
   params: {}
 }
 

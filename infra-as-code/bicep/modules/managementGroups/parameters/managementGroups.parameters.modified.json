@@ -12,10 +12,10 @@
       "value": "IntermediateRoot"
     },
     "parLandingZoneMgAlzDefaultsEnable": {
-      "value": true
+      "value": false
     },
     "parPlatformMgAlzDefaultsEnable": {
-      "value": true
+      "value": false
     },
     "parLandingZoneMgConfidentialEnable": {
       "value": false

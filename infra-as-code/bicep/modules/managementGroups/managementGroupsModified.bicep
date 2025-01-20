@@ -39,7 +39,7 @@ param parTelemetryOptOut bool = false
 
 // Platform and Child Management Groups
 var varPlatformMg = {
-  name: '${parTopLevelManagementGroupPrefix}-platform${parTopLevelManagementGroupSuffix}'
+  name: '${parTopLevelManagementGroupPrefix}-Platform${parTopLevelManagementGroupSuffix}'
   displayName: 'Platform'
 }
 
@@ -58,8 +58,8 @@ var varPlatformMgChildrenAlzDefault = {
 
 // Landing Zones & Child Management Groups
 var varLandingZoneMg = {
-  name: '${parTopLevelManagementGroupPrefix}-landingzones${parTopLevelManagementGroupSuffix}'
-  displayName: 'Landing Zones'
+  name: '${parTopLevelManagementGroupPrefix}-Applications${parTopLevelManagementGroupSuffix}'
+  displayName: 'Applications'
 }
 
 // Used if parLandingZoneMgAlzDefaultsEnable == true

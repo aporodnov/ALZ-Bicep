@@ -4,8 +4,8 @@ metadata name = 'ALZ Bicep - Management Groups Module'
 metadata description = 'ALZ Bicep Module to set up Management Group structure'
 
 @sys.description('Prefix used for the management group hierarchy. This management group will be created as part of the deployment.')
-@minLength(2)
-@maxLength(10)
+@minLength(0)
+@maxLength(40)
 param parTopLevelManagementGroupPrefix string = 'alz'
 
 @sys.description('Optional suffix for the management group hierarchy. This suffix will be appended to management group names/IDs. Include a preceding dash if required. Example: -suffix')
